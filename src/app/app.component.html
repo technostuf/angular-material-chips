@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Default Chip List</h2>
+    <mat-chip-list aria-label="Language Selection">
+      <mat-chip color="primary" selected>
+        English
+      </mat-chip>
+
+      <mat-chip color="accent">
+        French
+      </mat-chip>
+
+      <mat-chip color="warn">
+        Mandarin
+      </mat-chip>
+
+      <mat-chip>Hindi</mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <h2>Chips with input </h2>
+    <mat-form-field class="input-chip-list" appearance="fill">
+      <mat-label>Language</mat-label>
+      <mat-chip-list #chipList aria-label="Language selection">
+        <mat-chip *ngFor="let language of languages" (removed)="remove(language)">
+          {{language.name}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="New language..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
